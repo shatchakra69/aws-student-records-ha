@@ -16,6 +16,6 @@ CREATE TABLE IF NOT EXISTS students (
 );
 
 INSERT INTO students (first_name, last_name, email, major, enrollment_year) VALUES
-  ('Ada',   'Lovelace', 'ada.lovelace@ue-germany.de', 'Computer Science',     2023),
-  ('Alan',  'Turing',   'alan.turing@ue-germany.de',  'Mathematics',          2022),
-  ('Grace', 'Hopper',   'grace.hopper@ue-germany.de', 'Software Engineering', 2024);
+  ('Ada',   'Lovelace', 'ada.lovelace@example.edu', 'Computer Science',     2023),
+  ('Alan',  'Turing',   'alan.turing@example.edu',  'Mathematics',          2022),
+  ('Grace', 'Hopper',   'grace.hopper@example.edu', 'Software Engineering', 2024);

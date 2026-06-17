@@ -1,7 +1,7 @@
 # Highly Available & Scalable Student Records on AWS
 
 A production-style **3-tier web application** deployed on AWS as **Infrastructure as Code**.
-A university student-records CRUD app runs behind an **Application Load Balancer** across an
+A student-records CRUD app runs behind an **Application Load Balancer** across an
 **EC2 Auto Scaling Group** in private subnets, backed by a private **Amazon RDS (MySQL)**
 database — all inside a custom VPC with public/private subnet isolation across two
 Availability Zones.
@@ -10,9 +10,8 @@ The same architecture is provided in **both Terraform and AWS CloudFormation**.
 
 [![CI](https://github.com/shatchakra69/aws-student-records-ha/actions/workflows/ci.yml/badge.svg)](https://github.com/shatchakra69/aws-student-records-ha/actions/workflows/ci.yml)
 
-> Rebuilt end-to-end as a personal portfolio project. The original was a group lab
-> exercise; this repository reconstructs the entire stack from scratch as reproducible,
-> automatically-validated code.
+> Built end-to-end as a personal cloud-engineering portfolio project — the entire
+> stack is reproducible, automatically-validated Infrastructure as Code.
 
 ---
 

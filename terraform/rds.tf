@@ -29,7 +29,7 @@ resource "aws_db_instance" "this" {
   publicly_accessible    = false
   multi_az               = var.db_multi_az
 
-  # Lab-friendly lifecycle: easy to tear down. Tighten these for production.
+  # Demo-friendly lifecycle: easy to tear down. Tighten these for production.
   skip_final_snapshot = true
   deletion_protection = false
   apply_immediately   = true

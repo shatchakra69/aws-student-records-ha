@@ -14,9 +14,9 @@ depends on traffic, free-tier eligibility, and how long you leave it up.
 | CloudWatch | 2 alarms + basic metrics | ~$0.60 |
 | **Total** | | **~$80 / month** |
 
-> The original course presentation estimated **~$48.79/month** — that figure
-> assumed free-tier EC2 hours and excluded most NAT Gateway data processing.
-> The table above is the fuller on-demand picture.
+> A leaner figure of **~$48.79/month** is achievable assuming free-tier EC2 hours
+> and minimal NAT Gateway data processing. The table above is the fuller
+> on-demand picture.
 
 ## Keeping it cheap
 

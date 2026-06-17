@@ -17,7 +17,7 @@ resource "aws_secretsmanager_secret" "db" {
   name        = "${local.name_prefix}-db-credentials-${random_id.secret_suffix.hex}"
   description = "MySQL credentials for the student records app"
 
-  # 0-day recovery window so teardown + re-deploy in a lab doesn't hit the
+  # 0-day recovery window so teardown + re-deploy in a demo doesn't hit the
   # "secret scheduled for deletion" name conflict. Use a longer window in prod.
   recovery_window_in_days = 0
 }

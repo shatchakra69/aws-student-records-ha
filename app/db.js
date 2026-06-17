@@ -17,9 +17,9 @@ const pool = mysql.createPool({
 });
 
 const SEED_STUDENTS = [
-  ['Ada', 'Lovelace', 'ada.lovelace@ue-germany.de', 'Computer Science', 2023],
-  ['Alan', 'Turing', 'alan.turing@ue-germany.de', 'Mathematics', 2022],
-  ['Grace', 'Hopper', 'grace.hopper@ue-germany.de', 'Software Engineering', 2024],
+  ['Ada', 'Lovelace', 'ada.lovelace@example.edu', 'Computer Science', 2023],
+  ['Alan', 'Turing', 'alan.turing@example.edu', 'Mathematics', 2022],
+  ['Grace', 'Hopper', 'grace.hopper@example.edu', 'Software Engineering', 2024],
 ];
 
 // Create the table if it does not exist and seed a few rows on first boot.

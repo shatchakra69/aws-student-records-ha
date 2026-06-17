@@ -52,5 +52,5 @@ total to a couple of dollars. See [`../docs/cost.md`](../docs/cost.md).
 
 - HTTP only (no domain/ACM). Add an HTTPS listener + ACM certificate for prod.
 - `skip_final_snapshot` and `deletion_protection = false` make teardown easy in
-  a lab — reverse both for production.
+  a demo environment — reverse both for production.
 - Single NAT Gateway (cost). For full AZ resilience, run one NAT per AZ.
