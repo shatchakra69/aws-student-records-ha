@@ -1,0 +1,19 @@
+<%- include('partials/header') %>
+
+  <h1>Edit student</h1>
+
+  <% if (error) { %><p class="error"><%= error %></p><% } %>
+
+  <form action="/students/<%= student.id %>" method="POST" class="record-form">
+    <label>First name<input type="text" name="first_name" value="<%= student.first_name %>" required /></label>
+    <label>Last name<input type="text" name="last_name" value="<%= student.last_name %>" required /></label>
+    <label>Email<input type="email" name="email" value="<%= student.email %>" required /></label>
+    <label>Major<input type="text" name="major" value="<%= student.major || '' %>" /></label>
+    <label>Enrollment year<input type="number" name="enrollment_year" value="<%= student.enrollment_year || '' %>" min="1900" max="2100" /></label>
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary">Update</button>
+      <a href="/" class="btn">Cancel</a>
+    </div>
+  </form>
+
+<%- include('partials/footer') %>

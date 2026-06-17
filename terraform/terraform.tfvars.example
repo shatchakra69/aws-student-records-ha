@@ -1,0 +1,12 @@
+# Copy to terraform.tfvars and edit. terraform.tfvars is gitignored.
+
+aws_region   = "us-east-1"
+project_name = "student-records"
+
+# REQUIRED: after you push this repo to GitHub (public), set the clone URL so
+# the EC2 instances can pull the app at boot.
+app_repo_url    = "https://github.com/shatchakra69/aws-student-records-ha.git"
+app_repo_branch = "main"
+
+# Flip to true to demonstrate a Multi-AZ (more available, more expensive) DB.
+db_multi_az = false

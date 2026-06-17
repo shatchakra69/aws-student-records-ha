@@ -1,0 +1,81 @@
+#!/bin/bash
+# Bootstraps an app instance: installs Node + NGINX, pulls the app, fetches DB
+# credentials from Secrets Manager, and runs the app as a systemd service.
+# Note: no `set -x` — we never want the DB password echoed into cloud-init logs.
+set -euo pipefail
+
+export DEBIAN_FRONTEND=noninteractive
+apt-get update -y
+apt-get install -y nginx jq unzip curl git
+
+# --- AWS CLI v2 (for Secrets Manager) ---
+curl -sSL "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o /tmp/awscliv2.zip
+unzip -q /tmp/awscliv2.zip -d /tmp
+/tmp/aws/install
+
+# --- Node.js 20 ---
+curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
+apt-get install -y nodejs
+
+# --- Application source ---
+APP_DIR=/opt/student-records
+git clone --branch ${app_repo_branch} ${app_repo_url} "$APP_DIR"
+cd "$APP_DIR/app"
+npm ci --omit=dev
+
+# --- Database credentials from Secrets Manager ---
+SECRET_JSON=$(aws secretsmanager get-secret-value \
+  --secret-id ${secret_arn} --region ${region} \
+  --query SecretString --output text)
+DB_USER=$(echo "$SECRET_JSON" | jq -r .username)
+DB_PASSWORD=$(echo "$SECRET_JSON" | jq -r .password)
+
+umask 077
+cat >/etc/student-records.env <<EOF
+PORT=${app_port}
+NODE_ENV=production
+DB_HOST=${db_host}
+DB_PORT=${db_port}
+DB_NAME=${db_name}
+DB_USER=$DB_USER
+DB_PASSWORD=$DB_PASSWORD
+RUN_MIGRATIONS=true
+EOF
+
+# --- systemd service ---
+cat >/etc/systemd/system/student-records.service <<'EOF'
+[Unit]
+Description=Student Records App
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/student-records/app
+EnvironmentFile=/etc/student-records.env
+ExecStart=/usr/bin/node server.js
+Restart=always
+User=www-data
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+systemctl daemon-reload
+systemctl enable --now student-records
+
+# --- NGINX reverse proxy :80 -> app ---
+cat >/etc/nginx/sites-available/student-records <<EOF
+server {
+    listen 80 default_server;
+    location / {
+        proxy_pass http://127.0.0.1:${app_port};
+        proxy_set_header Host \$host;
+        proxy_set_header X-Real-IP \$remote_addr;
+        proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto \$scheme;
+    }
+}
+EOF
+ln -sf /etc/nginx/sites-available/student-records /etc/nginx/sites-enabled/student-records
+rm -f /etc/nginx/sites-enabled/default
+systemctl restart nginx

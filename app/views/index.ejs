@@ -1,0 +1,55 @@
+<%- include('partials/header') %>
+
+  <div class="list-head">
+    <h1>Students <span class="count"><%= students.length %></span></h1>
+    <form action="/" method="GET" class="search">
+      <input type="search" name="q" value="<%= q %>" placeholder="Search name, email, major…" />
+      <button type="submit" class="btn">Search</button>
+      <% if (q) { %><a href="/" class="btn btn-small">Clear</a><% } %>
+    </form>
+  </div>
+
+  <% if (msg) { %>
+    <p class="banner"><%= ({ created: 'Student added.', updated: 'Student updated.', deleted: 'Student deleted.' })[msg] || '' %></p>
+  <% } %>
+
+  <% if (students.length === 0) { %>
+    <% if (q) { %>
+      <p class="empty">No students match "<%= q %>". <a href="/">Clear search</a>.</p>
+    <% } else { %>
+      <p class="empty">No students yet. <a href="/students/new">Add the first one</a>.</p>
+    <% } %>
+  <% } else { %>
+    <table class="records">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Major</th>
+          <th>Enrolled</th>
+          <th class="actions">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% students.forEach(function (s) { %>
+          <tr>
+            <td><%= s.id %></td>
+            <td><%= s.first_name %> <%= s.last_name %></td>
+            <td><%= s.email %></td>
+            <td><%= s.major || '—' %></td>
+            <td><%= s.enrollment_year || '—' %></td>
+            <td class="actions">
+              <a href="/students/<%= s.id %>/edit" class="btn btn-small">Edit</a>
+              <form action="/students/<%= s.id %>/delete" method="POST" class="inline"
+                    onsubmit="return confirm('Delete this student?');">
+                <button type="submit" class="btn btn-small btn-danger">Delete</button>
+              </form>
+            </td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  <% } %>
+
+<%- include('partials/footer') %>
