@@ -109,8 +109,17 @@ Full breakdown: [`docs/cost.md`](docs/cost.md).
 
 ## Screenshots
 
-> _Add screenshots of the running app and AWS console here after your first deploy
-> (`docs/screenshots/`)._
+**Student records — list view** (search, live record count, edit/delete per row)
+
+![Students list](docs/screenshots/01-students-list.png)
+
+| Add a student | Edit a student |
+|---|---|
+| ![Add student](docs/screenshots/02-add-student.png) | ![Edit student](docs/screenshots/03-edit-student.png) |
+
+> The application UI served by the EC2 app tier. Screenshots of the live AWS
+> environment (ALB target health, Auto Scaling group, RDS) can be added to
+> `docs/screenshots/` after a `terraform apply`.
 
 ---
 
