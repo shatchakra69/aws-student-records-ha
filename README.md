@@ -9,8 +9,6 @@ private subnets across two Availability Zones. I wrote the whole stack twice, on
 
 [![CI](https://github.com/shatchakra69/AWS-Student-Records/actions/workflows/ci.yml/badge.svg)](https://github.com/shatchakra69/AWS-Student-Records/actions/workflows/ci.yml)
 
-> A personal portfolio project. Everything here is reproducible from code and checked in CI.
-
 ## Architecture
 
 ![Architecture diagram](docs/architecture.svg)
@@ -166,7 +164,7 @@ I deployed the whole stack to AWS, confirmed the app worked end to end, then tor
 
 Designed and built solely by **Shat Chakra Pawar Amgothu**.
 
-For any questions, suggestions, or opportunities, feel free to reach out:
+For any questions, suggestions, or opportunities, feel free to reach me out:
 - Email: [shatchakra69@gmail.com](mailto:shatchakra69@gmail.com)
 - [LinkedIn](https://www.linkedin.com/in/shat-chakra-pawar-amgothu-a6921a2b4/)
 
