@@ -13,6 +13,11 @@ Availability Zones. The same architecture is provided in **both Terraform and AW
 
 ## Architecture
 
+![Architecture diagram](docs/architecture.svg)
+
+<details>
+<summary>Text-based version (Mermaid source)</summary>
+
 ```mermaid
 flowchart TB
     user(["Internet users"])
@@ -54,6 +59,7 @@ flowchart TB
     class rds db;
     class user person;
 ```
+</details>
 
 Request path: **Internet → ALB (port 80) → EC2 app tier (port 80) → RDS MySQL (port 3306)**.
 Each tier accepts traffic only from the tier directly in front of it.
