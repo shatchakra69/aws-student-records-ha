@@ -162,6 +162,14 @@ The full stack was deployed to AWS and verified end to end, then torn down to av
 └── .github/workflows/   # CI pipeline
 ```
 
+## Author
+
+Designed and built solely by **Shat Chakra Pawar Amgothu**.
+
+For any questions, suggestions, or opportunities, feel free to reach out:
+- Email: [shatchakra69@gmail.com](mailto:shatchakra69@gmail.com)
+- [LinkedIn](https://www.linkedin.com/in/shat-chakra-pawar-amgothu-a6921a2b4/)
+
 ## License
 
 [MIT](LICENSE) © Shat Chakra Pawar Amgothu
